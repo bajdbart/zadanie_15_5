@@ -1,3 +1,5 @@
+import URL from ('../config');
+
 var App = React.createClass({
   getInitialState() {
     return {
@@ -11,7 +13,7 @@ var App = React.createClass({
     this.setState({
       loading: true
     });
-    this.getGif(searchingText).then (gif => {
+    this.getGif(searchingText).then(gif => {
       this.setState({
         loading: false,
         gif: gif,
@@ -23,7 +25,7 @@ var App = React.createClass({
   getGif: function(searchingText) {
     return new Promise (
       (resolve, reject) => {
-        var url = 'https://api.giphy.com' + '/v1/gifs/random?api_key=' + '79d4ejI5WnmHsZqbA6TZOyeG2iB4101D' + '&tag=' + searchingText;
+        var url = URL + searchingText;
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
         xhr.onload = function() {
@@ -46,7 +48,6 @@ var App = React.createClass({
   },
 	
   render: function() {
-
     var styles = {
       margin: '0 auto',
       textAlign: 'center',
